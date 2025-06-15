@@ -238,6 +238,86 @@ void konversiNilai(double nilai) {
     }   
 }
 
+double hitungRataRata(vector<double> nilai) {
+        if (nilai.empty()) {
+            return 0.0;
+        }
+        double hasil = hitungRataRataDivideConquer(nilai, 0, nilai.size() - 1);
+        return hasil;
+    }
+    
+    void inputUASUTS() {
+        cout << endl << "Input Nilai UAS dan UTS:" << endl;
+        double* ptrUAS = &nilaiUAS;
+        double* ptrUTS = &nilaiUTS;
+        
+        cout << "UAS: ";
+        cin >> *ptrUAS;
+        cout << "UTS: ";
+        cin >> *ptrUTS;
+        cout << endl;
+    }
+    
+    void inputQuiz() {
+        cout << endl << "Input Nilai Quiz:" << endl;
+        int jumlahQuiz;
+        cout << "Jumlah quiz: ";
+        cin >> jumlahQuiz;
+        
+        vector<double> daftarNilaiQuiz;
+        for (int i = 0; i < jumlahQuiz; i++) {
+            double nilai;
+            cout << "Quiz " << (i + 1) << ": ";
+            cin >> nilai;
+            daftarNilaiQuiz.push_back(nilai);
+        }
+        double* ptrNilaiQuiz = &nilaiQuiz;
+        *ptrNilaiQuiz = hitungRataRata(daftarNilaiQuiz);
+        cout << "Rata-rata quiz: " << *ptrNilaiQuiz << endl;
+        cout << endl;
+    }
+    void inputTugas() {
+        cout << endl << "Input Nilai Tugas:" << endl;
+        int jumlahTugas;
+        cout << "Jumlah tugas: ";
+        cin >> jumlahTugas;
+        
+        vector<double> daftarNilaiTugas;
+        for (int i = 0; i < jumlahTugas; i++) {
+            double nilai;
+            cout << "Tugas " << (i + 1) << ": ";
+            cin >> nilai;
+            daftarNilaiTugas.push_back(nilai);
+        }
+        double* ptrNilaiTugas = &nilaiTugas;
+        *ptrNilaiTugas = hitungRataRata(daftarNilaiTugas);
+        cout << "Rata-rata tugas: " << *ptrNilaiTugas << endl;
+        cout << endl;
+    }
+    void inputAbsensi() {
+        cout << endl << "Input Absensi:" << endl;
+        int jumlahPertemuan;
+        cout << "Jumlah pertemuan: ";
+        cin >> jumlahPertemuan;
+    
+        int jumlahHadir = 0;
+        int* ptrJumlahHadir = &jumlahHadir;
+        
+        cout << "Kehadiran (H=Hadir, T=Tidak Hadir):" << endl;
+        for (int i = 0; i < jumlahPertemuan; i++) {
+            char kehadiran;
+            cout << "Pertemuan " << (i + 1) << ": ";
+            cin >> kehadiran;
+            if (kehadiran == 'H' || kehadiran == 'h') {
+                (*ptrJumlahHadir)++;
+            }
+        }
+        double* ptrNilaiAbsensi = &nilaiAbsensi;
+        *ptrNilaiAbsensi = (double)*ptrJumlahHadir / jumlahPertemuan * 100;
+        cout << "Nilai absensi: " << *ptrNilaiAbsensi << endl;
+        cout << endl;
+    }
+
 
 
 

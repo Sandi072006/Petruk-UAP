@@ -450,6 +450,70 @@ public:
         }
         return (totalSKS > 0) ? totalSKSxBobot / totalSKS : 0.0;
     }
+void tampilkanHistory() {
+        cout << endl << "History Operasi:" << endl;
+        for (int i = 0; i < historyOperasi.size(); i++) {
+            cout << (i + 1) << ". " << historyOperasi[i] << endl;
+        }
+    }
+    
+    void tampilkanRingkasan() {
+        cout << endl << "Ringkasan Nilai Mata Kuliah:" << endl;
+        cout << "------------------------------------------------------------------------" << endl;
+        cout << left << setw(20) << "Mata Kuliah" 
+             << setw(5) << "SKS" 
+             << setw(10) << "Nilai" 
+             << setw(8) << "Huruf" 
+             << setw(8) << "Bobot" 
+             << setw(30) << "Komentar" << endl;
+        cout << "------------------------------------------------------------------------" << endl;
+
+        for (int i = 0; i < daftarMataKuliah.size(); i++) {
+            cout << fixed << setprecision(2);
+            cout << left << setw(20) << daftarMataKuliah[i].getNama()
+                 << setw(5) << daftarMataKuliah[i].getSKS()
+                 << setw(10) << daftarMataKuliah[i].getNilaiAkhir()
+                 << setw(8) << daftarMataKuliah[i].getHurufMutu()
+                 << setw(8) << daftarMataKuliah[i].getBobotMutu() 
+                 << setw(30) << daftarMataKuliah[i].getKomentar() << endl;
+        }
+        cout << "------------------------------------------------------------------------" << endl;
+
+        double ipk = hitungIPK();
+        cout << "IPK: " << fixed << setprecision(2) << ipk << endl;
+        cout << "Prestasi: ";
+        if (ipk >= 3.5) {
+            cout << "Cum Laude" << endl;
+        } else if (ipk >= 3.0) {
+            cout << "Sangat Memuaskan" << endl;
+        } else if (ipk >= 2.5) {
+            cout << "Memuaskan" << endl;
+        } else if (ipk >= 2.0) {
+            cout << "Cukup" << endl;
+        } else {
+            cout << "Kurang" << endl;
+        }
+        tampilkanHistory();
+    }
+    
+    void jalankanProgram() {
+        char lanjut;
+        cout << "===================================================" << endl;
+        cout << "       PROGRAM PERHITUNGAN NILAI MATA KULIAH" << endl;
+        cout << "===================================================" << endl;
+        do {
+            cout << endl; 
+            tambahMataKuliah();
+            
+            cout << endl << "Tambah mata kuliah lain? (y/n): ";
+            cin >> lanjut;
+            
+        } while (lanjut == 'y' || lanjut == 'Y');
+        
+        tampilkanRingkasan();
+    }
+};
+
 
 
 int main() {

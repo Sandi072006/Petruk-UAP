@@ -147,7 +147,95 @@ void konversiNilai(double nilai) {
             bobotMutu = 0.0;
         }
     }
-    
+ void inputResponsi() {
+        char sudahAda;
+        cout << endl << "Input Responsi:" << endl;
+        cout << "Sudah ada nilai akhir? (y/n): ";
+        cin >> sudahAda;
+
+        double* ptrNilaiResponsi = &nilaiResponsi;
+        
+        if (sudahAda == 'y' || sudahAda == 'Y') {
+            cout << "Nilai akhir responsi: ";
+            cin >> *ptrNilaiResponsi;
+        } else {
+            double* ptrPersenUASResp = &persenUASResponsi;
+            double* ptrPersenUTSResp = &persenUTSResponsi;
+            double* ptrPersenQuizResp = &persenQuizResponsi;
+            double* ptrPersenTugasResp = &persenTugasResponsi;
+            
+            cout << endl << "Persentase Komponen:" << endl;
+            cout << "UAS (%): ";
+            cin >> *ptrPersenUASResp;
+            cout << "UTS (%): ";
+            cin >> *ptrPersenUTSResp;
+            cout << "Quiz (%): ";
+            cin >> *ptrPersenQuizResp;
+            cout << "Tugas (%): ";
+            cin >> *ptrPersenTugasResp;
+
+            double totalPersenResponsi = *ptrPersenUASResp + *ptrPersenUTSResp + *ptrPersenQuizResp + *ptrPersenTugasResp;
+            if (totalPersenResponsi != 100) {
+                cout << "Total: " << totalPersenResponsi << "% (tidak 100%)" << endl;
+            } else {
+                cout << "Total: " << totalPersenResponsi << "% (Valid)" << endl;
+            }
+            
+            double* ptrNilaiUASResp = &nilaiUASResponsi;
+            double* ptrNilaiUTSResp = &nilaiUTSResponsi;
+            double* ptrNilaiQuizResp = &nilaiQuizResponsi;
+            double* ptrNilaiTugasResp = &nilaiTugasResponsi;
+            
+            cout << endl << "Nilai Komponen:" << endl;
+            cout << "UAS: ";
+            cin >> *ptrNilaiUASResp;
+            cout << "UTS: ";
+            cin >> *ptrNilaiUTSResp;
+            
+            int jumlahQuizResponsi;
+            cout << "Jumlah quiz: ";
+            cin >> jumlahQuizResponsi;
+            
+            vector<double> daftarNilaiQuizResponsi;
+            for (int i = 0; i < jumlahQuizResponsi; i++) {
+                double nilai;
+                cout << "Quiz " << (i + 1) << ": ";
+                cin >> nilai;
+                daftarNilaiQuizResponsi.push_back(nilai);
+            }  
+            *ptrNilaiQuizResp = hitungRataRata(daftarNilaiQuizResponsi);
+            cout << "Rata-rata quiz: " << *ptrNilaiQuizResp << endl;
+            
+            int jumlahTugasResponsi;
+            cout << "Jumlah tugas: ";
+            cin >> jumlahTugasResponsi;
+            
+            vector<double> daftarNilaiTugasResponsi;
+            for (int i = 0; i < jumlahTugasResponsi; i++) {
+                double nilai;
+                cout << "Tugas " << (i + 1) << ": ";
+                cin >> nilai;
+                daftarNilaiTugasResponsi.push_back(nilai);
+            }
+            *ptrNilaiTugasResp = hitungRataRata(daftarNilaiTugasResponsi);
+            cout << "Rata-rata tugas: " << *ptrNilaiTugasResp << endl;
+            
+            double kontribusiUASResponsi = (*ptrNilaiUASResp * *ptrPersenUASResp) / 100;
+            double kontribusiUTSResponsi = (*ptrNilaiUTSResp * *ptrPersenUTSResp) / 100;
+            double kontribusiQuizResponsi = (*ptrNilaiQuizResp * *ptrPersenQuizResp) / 100;
+            double kontribusiTugasResponsi = (*ptrNilaiTugasResp * *ptrPersenTugasResp) / 100;
+            
+            *ptrNilaiResponsi = kontribusiUASResponsi + kontribusiUTSResponsi + kontribusiQuizResponsi + kontribusiTugasResponsi;
+            cout << endl << "Hasil Responsi:" << endl;
+            cout << fixed << setprecision(2);
+            cout << "UAS: " << *ptrNilaiUASResp << " x " << *ptrPersenUASResp << "% = " << kontribusiUASResponsi << endl;
+            cout << "UTS: " << *ptrNilaiUTSResp << " x " << *ptrPersenUTSResp << "% = " << kontribusiUTSResponsi << endl;
+            cout << "Quiz: " << *ptrNilaiQuizResp << " x " << *ptrPersenQuizResp << "% = " << kontribusiQuizResponsi << endl;
+            cout << "Tugas: " << *ptrNilaiTugasResp << " x " << *ptrPersenTugasResp << "% = " << kontribusiTugasResponsi << endl;
+            cout << "Nilai akhir: " << *ptrNilaiResponsi << endl;
+        }
+        cout << endl;
+    }   
 }
 
 

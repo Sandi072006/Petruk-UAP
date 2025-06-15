@@ -79,6 +79,9 @@ void setNama(string n) {
     double getBobotMutu() { 
         return bobotMutu; 
     }
+const char* getKomentar() {
+        return komentar;
+    }
 
 void inputPersentase() {
         cout << endl << "Input Persentase:" << endl;

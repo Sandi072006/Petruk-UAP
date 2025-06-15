@@ -25,6 +25,18 @@ private:
     double persenUASResponsi, persenUTSResponsi, persenQuizResponsi, persenTugasResponsi;
     double nilaiUASResponsi, nilaiUTSResponsi, nilaiQuizResponsi, nilaiTugasResponsi;
 
+    double hitungRataRataDivideConquer(vector<double>& nilai, int mulai, int akhir) {
+        if (mulai == akhir) {
+            return nilai[mulai];
+        }
+        int tengah = mulai + (akhir - mulai) / 2;
+        double rataKiri = hitungRataRataDivideConquer(nilai, mulai, tengah);
+        double rataKanan = hitungRataRataDivideConquer(nilai, tengah + 1, akhir);
+        int jumlahKiri = tengah - mulai + 1;
+        int jumlahKanan = akhir - tengah;
+        
+        return (rataKiri * jumlahKiri + rataKanan * jumlahKanan) / (jumlahKiri + jumlahKanan);
+    }
     void setupUrutanInput() {
         while (!urutanInput.empty()) {
             urutanInput.pop();
@@ -70,6 +82,44 @@ void setNama(string n) {
         return bobotMutu; 
     }
 
+void inputPersentase() {
+        cout << endl << "Input Persentase:" << endl;
+        
+        double* ptrPersenUAS = &persenUAS;
+        double* ptrPersenUTS = &persenUTS;
+        double* ptrPersenQuiz = &persenQuiz;
+        double* ptrPersenTugas = &persenTugas;
+        double* ptrPersenAbsensi = &persenAbsensi;
+        double* ptrPersenResponsi = &persenResponsi;
+        
+        cout << "UAS (%): ";
+        cin >> *ptrPersenUAS;
+        cout << "UTS (%): ";
+        cin >> *ptrPersenUTS;
+        cout << "Quiz (%): ";
+        cin >> *ptrPersenQuiz;
+        cout << "Tugas (%): ";
+        cin >> *ptrPersenTugas;
+        cout << "Absensi (%): ";
+        cin >> *ptrPersenAbsensi;
+        
+        if (sks == 3) {
+            cout << "Responsi (%): ";
+            cin >> *ptrPersenResponsi;
+        }
+        
+        double totalPersen = *ptrPersenUAS + *ptrPersenUTS + *ptrPersenQuiz + *ptrPersenTugas + *ptrPersenAbsensi;
+        if (sks == 3) {
+            totalPersen += *ptrPersenResponsi;
+        }
+        if (totalPersen != 100) {
+            cout << "Total: " << totalPersen << "% (tidak 100%)" << endl;
+        } else {
+            cout << "Total: " << totalPersen << "% (Valid)" << endl;
+        }
+        cout << endl;
+    }
+
 void konversiNilai(double nilai) {
         if (nilai >= 85) {
             hurufMutu = "A+";
@@ -99,6 +149,8 @@ void konversiNilai(double nilai) {
     }
     
 }
+
+
 
 
 int main() {

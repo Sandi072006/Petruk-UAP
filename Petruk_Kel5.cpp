@@ -366,6 +366,59 @@ void buatKomentar() {
         }
     }
 
+void tampilkanHasil() {
+        cout << endl << "Hasil Perhitungan:" << endl;
+        cout << fixed << setprecision(2);
+        
+        double* ptrKomponen = komponenNilai;
+        cout << "UAS: " << *(ptrKomponen + 0) << " x " << persenUAS << "% = " << (*(ptrKomponen + 0) * persenUAS) / 100 << endl;
+        cout << "UTS: " << *(ptrKomponen + 1) << " x " << persenUTS << "% = " << (*(ptrKomponen + 1) * persenUTS) / 100 << endl;
+        cout << "Quiz: " << *(ptrKomponen + 2) << " x " << persenQuiz << "% = " << (*(ptrKomponen + 2) * persenQuiz) / 100 << endl;
+        cout << "Tugas: " << *(ptrKomponen + 3) << " x " << persenTugas << "% = " << (*(ptrKomponen + 3) * persenTugas) / 100 << endl;
+        cout << "Absensi: " << *(ptrKomponen + 4) << " x " << persenAbsensi << "% = " << (*(ptrKomponen + 4) * persenAbsensi) / 100 << endl;
+        if (sks == 3) {
+            cout << "Responsi: " << *(ptrKomponen + 5) << " x " << persenResponsi << "% = " << (*(ptrKomponen + 5) * persenResponsi) / 100 << endl;
+        }
+        
+        cout << "Nilai akhir: " << nilaiAkhir << endl;
+        cout << "Huruf: " << hurufMutu << " (Bobot: " << bobotMutu << ")" << endl;
+        cout << "Komentar: " << komentar << endl; // Tampilkan komentar
+    }
+    
+    void prosesInputNilaiDenganQueue() {
+        setupUrutanInput();
+        
+        while (!urutanInput.empty()) {
+            string tahapanSaatIni = urutanInput.front();
+            urutanInput.pop();
+            
+            if (tahapanSaatIni == "Persentase") {
+                inputPersentase();
+            } else if (tahapanSaatIni == "UAS_UTS") {
+                inputUASUTS();
+            } else if (tahapanSaatIni == "Quiz") {
+                inputQuiz();
+            } else if (tahapanSaatIni == "Tugas") {
+                inputTugas();
+            } else if (tahapanSaatIni == "Absensi") {
+                inputAbsensi();
+            } else if (tahapanSaatIni == "Responsi") {
+                inputResponsi();
+            } else if (tahapanSaatIni == "Hitung") {
+                hitungNilaiAkhir();
+            } else if (tahapanSaatIni == "Tampilkan") {
+                tampilkanHasil();
+            }
+        }
+    }
+    
+    void prosesInputNilai() {
+        prosesInputNilaiDenganQueue();
+    }
+};
+
+
+
 
 int main() {
 

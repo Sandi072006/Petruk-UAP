@@ -317,7 +317,30 @@ double hitungRataRata(vector<double> nilai) {
         cout << "Nilai absensi: " << *ptrNilaiAbsensi << endl;
         cout << endl;
     }
-
+ void hitungNilaiAkhir() {
+        komponenNilai[0] = nilaiUAS;
+        komponenNilai[1] = nilaiUTS;
+        komponenNilai[2] = nilaiQuiz;
+        komponenNilai[3] = nilaiTugas;
+        komponenNilai[4] = nilaiAbsensi;
+        komponenNilai[5] = nilaiResponsi;
+        
+        double* ptrKomponen = komponenNilai;
+        double kontribusiUAS = (*(ptrKomponen + 0) * persenUAS) / 100;
+        double kontribusiUTS = (*(ptrKomponen + 1) * persenUTS) / 100;
+        double kontribusiQuiz = (*(ptrKomponen + 2) * persenQuiz) / 100;
+        double kontribusiTugas = (*(ptrKomponen + 3) * persenTugas) / 100;
+        double kontribusiAbsensi = (*(ptrKomponen + 4) * persenAbsensi) / 100;
+        
+        double* ptrNilaiAkhir = &nilaiAkhir;
+        *ptrNilaiAkhir = kontribusiUAS + kontribusiUTS + kontribusiQuiz + kontribusiTugas + kontribusiAbsensi;
+        
+        if (sks == 3) {
+            double kontribusiResponsi = (*(ptrKomponen + 5) * persenResponsi) / 100;
+            *ptrNilaiAkhir += kontribusiResponsi;
+        }
+        konversiNilai(*ptrNilaiAkhir);
+    }
 
 
 

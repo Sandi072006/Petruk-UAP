@@ -122,7 +122,7 @@ void inputPersentase() {
     }
 
 void konversiNilai(double nilai) {
-        if (nilai = 100) {
+        if (nilai == 100) {
             hurufMutu = "A+";
             bobotMutu = 4.0;
         } else if (nilai >= 76) {
@@ -238,7 +238,6 @@ void konversiNilai(double nilai) {
         }
         cout << endl;
     }   
-}
 
 double hitungRataRata(vector<double> nilai) {
         if (nilai.empty()) {
@@ -507,6 +506,7 @@ void tampilkanHistory() {
             
             cout << endl << "Tambah mata kuliah lain? (y/n): ";
             cin >> lanjut;
+            cin.ignore();
             
         } while (lanjut == 'y' || lanjut == 'Y');
         

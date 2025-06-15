@@ -121,32 +121,33 @@ void inputPersentase() {
     }
 
 void konversiNilai(double nilai) {
-        if (nilai >= 85) {
+        if (nilai = 100) {
             hurufMutu = "A+";
             bobotMutu = 4.0;
-        } else if (nilai >= 80) {
+        } else if (nilai >= 76) {
             hurufMutu = "A";
             bobotMutu = 4.0;
-        } else if (nilai >= 75) {
+        } else if (nilai >= 71) {
             hurufMutu = "B+";
             bobotMutu = 3.5;
-        } else if (nilai >= 70) {
+        } else if (nilai >= 66) {
             hurufMutu = "B";
             bobotMutu = 3.0;
-        } else if (nilai >= 65) {
+        } else if (nilai >= 61) {
             hurufMutu = "C+";
             bobotMutu = 2.5;
-        } else if (nilai >= 60) {
+        } else if (nilai >= 56) {
             hurufMutu = "C";
             bobotMutu = 2.0;
-        } else if (nilai >= 50) {
+        } else if (nilai >= 45) {
             hurufMutu = "D";
             bobotMutu = 1.0;
-        } else {
+        } else if(nilai < 45 ) {
             hurufMutu = "E";
             bobotMutu = 0.0;
         }
     }
+
  void inputResponsi() {
         char sudahAda;
         cout << endl << "Input Responsi:" << endl;

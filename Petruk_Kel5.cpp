@@ -416,10 +416,43 @@ void tampilkanHasil() {
         prosesInputNilaiDenganQueue();
     }
 };
+class SistemPenilaian {
+private:
+    vector<MataKuliah> daftarMataKuliah;
+    vector<string> historyOperasi;
 
-
+public:
+    void tambahMataKuliah() {
+        MataKuliah mk;
+        string nama;
+        int sks;
+        
+        cout << endl << "Nama Mata Kuliah: ";
+        getline(cin, nama);
+        mk.setNama(nama);
+    
+        cout << "SKS: ";
+        cin >> sks;
+        cin.ignore();
+        mk.setSKS(sks);
+        
+        mk.prosesInputNilai();
+        daftarMataKuliah.push_back(mk);
+        historyOperasi.push_back("Ditambah: " + nama);
+    }
+    
+    double hitungIPK() {
+        double totalSKSxBobot = 0;
+        int totalSKS = 0;
+        for (int i = 0; i < daftarMataKuliah.size(); i++) {
+            totalSKSxBobot += daftarMataKuliah[i].getSKS() * daftarMataKuliah[i].getBobotMutu();
+            totalSKS += daftarMataKuliah[i].getSKS();
+        }
+        return (totalSKS > 0) ? totalSKSxBobot / totalSKS : 0.0;
+    }
 
 
 int main() {
-
+    SistemPenilaian sistem;
+    sistem.jalankanProgram();
 }

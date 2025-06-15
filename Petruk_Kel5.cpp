@@ -341,8 +341,29 @@ double hitungRataRata(vector<double> nilai) {
             *ptrNilaiAkhir += kontribusiResponsi;
         }
         konversiNilai(*ptrNilaiAkhir);
+        buatKomentar();
     }
 
+
+void buatKomentar() {
+        if (strcmp(hurufMutu.c_str(), "A+") == 0) {
+            strcpy(komentar, "Gantiin Dosen ngajar");
+        } else if (strcmp(hurufMutu.c_str(), "A") == 0) {
+            strcpy(komentar, "Sesuai keinginan");
+        } else if (strcmp(hurufMutu.c_str(), "B+") == 0) {
+            strcpy(komentar, "Yahh Dikit lagi A");
+        } else if (strcmp(hurufMutu.c_str(), "B") == 0) {
+            strcpy(komentar, "Kebanyakan skroll tiktok");
+        } else if (strcmp(hurufMutu.c_str(), "C+") == 0) {
+            strcpy(komentar, "Kebanyakan Tidur");
+        } else if (strcmp(hurufMutu.c_str(), "C") == 0) {
+            strcpy(komentar, "Antara males atau dosenya gabut");
+        } else if (strcmp(hurufMutu.c_str(), "D") == 0) {
+            strcpy(komentar, "UTBK Lagi aja");
+        } else {
+            strcpy(komentar, "Gak usah kuliah");
+        }
+    }
 
 
 int main() {

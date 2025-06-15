@@ -14,9 +14,7 @@ private:
     string hurufMutu;
     double bobotMutu;
     char komentar[100];
-
- double komponenNilai[6];
- char komentar[100];
+    double komponenNilai[6];
     
     queue<string> urutanInput;
     double persenUAS, persenUTS, persenQuiz, persenTugas, persenAbsensi, persenResponsi;
